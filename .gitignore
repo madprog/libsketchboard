@@ -1,0 +1,32 @@
+# Binary objects
+*.la
+*.lo
+*.o
+*.pc
+
+# Autotools stuff
+.deps
+.libs
+/aclocal.m4
+/autom4te.cache
+/config.guess
+/config.h
+/config.h.in
+/config.log
+/config.status
+/config.sub
+/configure
+/depcomp
+/install-sh
+/libtool
+/ltmain.sh
+/m4
+/missing
+/sketchboard
+/stamp-h1
+Makefile
+Makefile.in
+
+# Test targets
+/test/*
+!/test/*.c

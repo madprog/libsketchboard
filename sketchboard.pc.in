@@ -1,0 +1,11 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: SketchBoard
+Description: SketchBoard.
+Requires: 
+Version: @PACKAGE_VERSION@
+Libs: -L${libdir} -sketchboard-1.0
+Cflags: -I${includedir}/sketchboard-1.0 -I${libdir}/sketchboard-1.0/include
