@@ -1,3 +1,4 @@
+#include <assert.h>
 #include <glib.h>
 #include <string.h>
 
@@ -13,11 +14,22 @@ Sketch *sketch_create() {
 }
 
 void sketch_free(Sketch *sketch) {
+  assert(sketch != NULL);
+
   g_hash_table_destroy(sketch->nodes);
   g_free(sketch);
 }
 
 void sketch_destroy(Sketch **sketch) {
+  assert(sketch != NULL);
+  assert(*sketch != NULL);
+
   sketch_free(*sketch);
   *sketch = NULL;
+}
+
+int sketch_get_nb_nodes(Sketch *sketch) {
+  assert(sketch != NULL);
+
+  return g_hash_table_size(sketch->nodes);
 }
