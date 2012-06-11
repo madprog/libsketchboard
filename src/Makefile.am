@@ -12,6 +12,8 @@ AM_CFLAGS=-I$(includedir) -std=gnu99 -Wall -Werror -pedantic-errors ${CFLAGS} \
 library_includedir=$(includedir)/sketchboard-$(LIBSKETCHBOARD_API_VERSION)
 library_include_HEADERS = \
                           $(includedir)/sketchboard.h \
+                          $(includedir)/sketchboard/node.h \
                           $(includedir)/sketchboard/sketch.h
 libsketchboard_@LIBSKETCHBOARD_API_VERSION@_la_SOURCES = \
+				node.c \
         sketch.c
