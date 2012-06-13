@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.68])
-AC_INIT([libsketchboard], [0.0.1], [bugs@scengrafics.com])
+AC_INIT([sketchboard], [1.0.0], [bugs@scengrafics.com])
 AC_CONFIG_SRCDIR([src/sketch.c])
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_MACRO_DIR([m4])
@@ -12,7 +12,6 @@ AM_SILENT_RULES([yes])
 
 AC_SUBST([LIBSKETCHBOARD_SO_VERSION], [1:0:0])
 AC_SUBST([LIBSKETCHBOARD_API_VERSION], [1.0])
-AC_SUBST([LIBSKETCHBOARD_LTAPI_VERSION], [1_0])
 
 # Checks for programs.
 AC_PROG_CC
@@ -44,12 +43,10 @@ PKG_CHECK_MODULES([GMODULE], [gmodule-2.0 >= 2.32], , [
 
 AC_CONFIG_FILES(
 		[Makefile]
+		[include/Makefile]
 		[src/Makefile]
 		[test/Makefile]
 		[sketchboard-${LIBSKETCHBOARD_API_VERSION}.pc:sketchboard.pc.in]
 		)
-
-#LIBS="$LIBS $GTK_LIBS $GMODULE_LIBS"
-#CFLAGS="$CFLAGS $GTK_CFLAGS $GMODULE_CFLAGS"
 
 AC_OUTPUT

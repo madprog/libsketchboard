@@ -7,5 +7,5 @@ Name: SketchBoard
 Description: SketchBoard.
 Requires: 
 Version: @PACKAGE_VERSION@
-Libs: -L${libdir} -sketchboard-1.0
-Cflags: -I${includedir}/sketchboard-1.0 -I${libdir}/sketchboard-1.0/include
+Libs: -L${libdir} -l@PACKAGE@-@LIBSKETCHBOARD_API_VERSION@
+Cflags: -I${includedir}/@PACKAGE@-@LIBSKETCHBOARD_API_VERSION@ -I${libdir}/@PACKAGE@-@LIBSKETCHBOARD_API_VERSION@/include
