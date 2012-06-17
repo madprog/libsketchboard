@@ -2,8 +2,25 @@
 #include <glib.h>
 #include <sketchboard.h>
 
-const int nb_outputs = 1;
+const int min_inputs = 1;
+const int max_inputs = INT_MAX;
+
+const int min_outputs = 1;
+const int max_outputs = 1;
+
 const char *name = "addition";
+
+const char *get_doc_input(int index) {
+  if(index < 0 || index >= max_inputs) return NULL;
+
+  return "[NUMBER] Operand to the sum";
+}
+
+const char *get_doc_output(int index) {
+  if(index < 0 || index >= max_outputs) return NULL;
+
+  return "[NUMBER] Sum of all inputs";
+}
 
 GArray *transform(SketchNode *node, GArray *inputs) {
   GArray *ret;

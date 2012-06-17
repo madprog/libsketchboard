@@ -104,7 +104,7 @@ GArray *node_get_output(SketchNode *node) {
   for(int i = 0; i < node->inputs->len; ++ i) {
     SketchValue val = g_array_index(node->inputs, SketchValue, i);
 
-    /* If the input is from a node, or if a node returned a node, compute its value */
+    /* If the input is from a node (or if a node returned a node), compute its value */
     while(val.type == SKETCH_VALUE_NODE) {
       GArray *sub_ret = node_get_output(val.value.node_output.node);
       assert(sub_ret != NULL);

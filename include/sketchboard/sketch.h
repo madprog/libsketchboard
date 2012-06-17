@@ -10,10 +10,19 @@ typedef struct _Sketch {
   GHashTable *modules;
 } Sketch;
 
+typedef const char *(*DocGetter)(int index);
+
 typedef struct _SketchModule {
   const char *name;
   void *dl_handle;
+  int min_inputs;
+  int max_inputs;
+  int min_outputs;
+  int max_outputs;
+
   NodeTransform transform;
+  DocGetter get_doc_input;
+  DocGetter get_doc_output;
 } SketchModule;
 
 Sketch *sketch_create();
