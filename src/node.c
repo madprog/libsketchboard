@@ -1,7 +1,7 @@
 #include <assert.h>
 #include <glib.h>
 
-#include "sketchboard/node.h"
+#include "sketchboard.h"
 
 SketchNode *node_create(Sketch *sketch) {
   assert(sketch != NULL);
@@ -14,6 +14,34 @@ SketchNode *node_create(Sketch *sketch) {
   }
   node->inputs = g_array_new(FALSE, TRUE, sizeof(SketchValue));
   g_hash_table_insert(sketch->nodes, &(node->id), node);
+
+  return node;
+}
+
+static GArray *transform_error(SketchNode *node, GArray *inputs) {
+  GArray *ret = g_array_new(FALSE, TRUE, sizeof(SketchValue));
+
+  g_array_set_size(ret, 1);
+  g_array_index(ret, SketchValue, 0).type = SKETCH_VALUE_ERROR;
+
+  return ret;
+}
+
+SketchNode *node_create_instance(Sketch *sketch, const char *name) {
+  assert(sketch != NULL);
+  assert(name != NULL);
+
+  SketchNode *node;
+  SketchModule *module;
+
+  module = sketch_get_module(sketch, name);
+
+  node = node_create(sketch);
+  if(module != NULL && module->transform != NULL) {
+    node->transform = module->transform;
+  } else {
+    node->transform = transform_error;
+  }
 
   return node;
 }
@@ -80,9 +108,12 @@ GArray *node_get_output(SketchNode *node) {
     while(val.type == SKETCH_VALUE_NODE) {
       GArray *sub_ret = node_get_output(val.value.node_output.node);
       assert(sub_ret != NULL);
-      assert(sub_ret->len > val.value.node_output.index);
 
-      val = g_array_index(sub_ret, SketchValue, val.value.node_output.index);
+      if(sub_ret->len > val.value.node_output.index) {
+        val = g_array_index(sub_ret, SketchValue, val.value.node_output.index);
+      } else {
+        val.type = SKETCH_VALUE_ERROR;
+      }
 
       g_array_free(sub_ret, TRUE);
     }

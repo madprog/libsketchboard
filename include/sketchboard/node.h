@@ -2,11 +2,8 @@
 #define NODE_H_INCLUDED
 
 #include "sketch.h"
+#include "transform.h"
 #include "value.h"
-
-struct _SketchNode;
-
-typedef GArray *(*NodeTransform)(struct _SketchNode *node, GArray *inputs);
 
 typedef struct _SketchNode {
   int id;
@@ -15,6 +12,7 @@ typedef struct _SketchNode {
 } SketchNode;
 
 SketchNode *node_create(Sketch *sketch);
+SketchNode *node_create_instance(Sketch *sketch, const char *name);
 void node_free(SketchNode *node);
 void node_destroy(Sketch *sketch, SketchNode **node);
 

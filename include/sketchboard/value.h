@@ -1,6 +1,8 @@
 #ifndef VALUE_H_INCLUDED
 #define VALUE_H_INCLUDED
 
+#include "node.h"
+
 #define SKETCH_VALUE_ERROR  0
 #define SKETCH_VALUE_NUMBER 1
 #define SKETCH_VALUE_NODE   2

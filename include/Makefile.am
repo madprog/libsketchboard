@@ -4,4 +4,5 @@ pkginclude_HEADERS = sketchboard.h
 subpkginclude_HEADERS = \
                         sketchboard/sketch.h \
                         sketchboard/value.h \
+                        sketchboard/transform.h \
                         sketchboard/node.h
